@@ -1,0 +1,26 @@
+{
+  "name": "elastic-demo",
+  "version": "1.0.0",
+  "description": "Elasticsearch Demo Project",
+  "main": "bin/run.js",
+  "bin": {
+    "elastic-demo": "1to4_convert.js"
+  },
+  "dependencies": {
+    "csv-parse": "^1.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kimjmin/elastic-demo.git"
+  },
+  "author": "Jongmin Kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kimjmin/elastic-demo/issues"
+  },
+  "homepage": "https://github.com/kimjmin/elastic-demo#readme"
+}

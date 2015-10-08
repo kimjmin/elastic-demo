@@ -120,7 +120,8 @@ fs.readFile('source/station_location.json', 'utf8', function (err,data) {
           totalCnt++;
         }
 
-        rotDate.setDate(rotDate.getDate()+1);
+        rotDate.set
+        Date(rotDate.getDate()+1);
         //console.log(rotDate);
       }
 
