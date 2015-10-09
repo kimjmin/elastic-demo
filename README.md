@@ -41,7 +41,27 @@ time_slice | datetime | 승/하차 시간. 1시간 단위.
 line_num | string | 호선 (1호선, 2호선 ...)
 station_name | string | 역 이름
 station_code | string | 역 코드
-station_geo | geopoint | 역 좌표 { lat: "" , lon: "" }
-people_in | long | 승차인원
-people_out | long | 하차인원
-total | long | 승하차인원
+station_geo | geo_point | 역 좌표 { lat: "" , lon: "" }
+people_in | integer | 승차인원
+people_out | integer | 하차인원
+total | integer | 승하차인원
+
+```
+curl -XPUT http://bec6d9580e248fb1623c88c0c026bd7b.ap-northeast-1.aws.found.io:9200/demo-kr-subway -d '
+{
+  "mappings" : {
+    "kr-subway" : {
+      "properties" : {
+        "time_slice" : { "type" : "date" },
+        "line_num" : { "type" : "string" },
+        "station_name" : { "type" : "string" },
+        "station_code" : { "type" : "string" },
+        "station_geo" : { "type" : "geo_point" },
+        "people_in" : { "type" : "integer" },
+        "people_out" : { "type" : "integer" },
+        "people_out" : { "type" : "integer" }
+      }
+    }
+  }
+}'
+```
