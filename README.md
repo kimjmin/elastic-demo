@@ -6,9 +6,9 @@
 npm install
 ```
 
-## 서울시 지하철 유동인원 데이터
+## 1. 서울시 지하철 유동인원 데이터
 
-### ELK 설정
+### 1.1 ELK 설정
 #### elasticsearch
 
 - 인덱스명: demo-kr-subway
@@ -48,7 +48,7 @@ curl -XPUT '<host url>:[9200|9243]/demo-kr-subway' [-u '<user>'] -d '
   }
 }'
 ```
-> - ES 서버에 Sield 가 설치된 경우 -u '<user>' 추가해서 사용자 인증 해야 함.
+> - ES 서버에 Sield 가 설치된 경우 -u 'user' 추가해서 사용자 인증 해야 함.
 
 #### logstash
 
@@ -85,16 +85,16 @@ output{
 ```
 
 > - found 클라우드 서비스에서 ssl 접속을 사용하는 경우 protocol => "http" 만 사용 가능함.
-> - ES 서버에 Sield 가 설치된 경우 user => "<user>", password => "<password>" 추가해서 사용자 인증 해야 함.
+> - ES 서버에 Sield 가 설치된 경우 user => "user", password => "password" 추가해서 사용자 인증 해야 함.
 
 
-## 데이터 수집
+### 1.2 데이터 수집
 
 > 서울시의 지하철은 각각 1~4호선은 서울메트로가, 5~8호선은 서울도시철도공사가 관리한다. 각 싸이트 또는 서울 열린 데이터 광장(http://data.seoul.go.kr/)에서 제공하는 데이터를 내려받아 사용한다.
 
 - 전체 도큐먼트 수 : 2,188,564
 
-### 역 코드로 지하철역 위치 조회
+#### 역 코드로 지하철역 위치 조회
 - 설명: 지하철역 위도/경도 좌표를 위한 메타데이타.
 - 제공: [서울메트로](http://www.seoulmetro.co.kr/)
 
@@ -104,7 +104,7 @@ output{
 3. 다운로드 한 파일명을 station_info.json 으로 변경하여 source/ 디렉토리 아래로 이동.
 
 
-### 역별 시간대별 승하차 인원 현황(2014년) - 1~4호선
+#### 역별 시간대별 승하차 인원 현황(2014년) - 1~4호선
 - 설명: 2014년도 1~4호선 역별 시간대별 승하차 인원.
 - 제공: [서울메트로](http://www.seoulmetro.co.kr/)
 
@@ -132,7 +132,7 @@ node bin/1to4_convert.js
 node bin/5to8_convert.js
 ```
 
-### Kibana4 예제 페이지
+### 1.3 Kibana4 예제 페이지
 
 - URL : https://14faa4d979096e1936d5d292ba5dbf6b.ap-northeast-1.aws.found.io/#/dashboard/서울시-지하철-승-slash-하차-인원
-- id / password 는 jongmin.kim@elastic.co 으로 문의.
+- 접속 id / password 는 jongmin.kim@elastic.co 으로 문의.
