@@ -90,13 +90,13 @@ output{
 
 ### 1.2 데이터 수집
 
-> 서울시의 지하철은 각각 1~4호선은 서울메트로가, 5~8호선은 서울도시철도공사가 관리한다. 각 싸이트 또는 서울 열린 데이터 광장(http://data.seoul.go.kr/)에서 제공하는 데이터를 내려받아 사용한다.
+> 서울시의 지하철은 각각 1~4호선은 서울메트로가, 5~8호선은 서울도시철도공사가 관리하기 별도 파일들로부터 데이터를 추출해야 한다.
 
 - 전체 도큐먼트 수 : 2,188,564
 
 #### 역 코드로 지하철역 위치 조회
 - 설명: 지하철역 위도/경도 좌표를 위한 메타데이타.
-- 제공: [서울메트로](http://www.seoulmetro.co.kr/)
+- 제공: [서울 열린 데이터광장](http://data.seoul.go.kr)([서울메트로](http://www.seoulmetro.co.kr/))
 - 방법:
   - 서울 열린 데이터 광장(http://data.seoul.go.kr/openinf/sheetview.jsp?infId=OA-118) 접속.
   - 제공되는 파일 중 json 파일 다운로드.
@@ -107,7 +107,7 @@ output{
 - 설명: 2014년도 1~4호선 역별 시간대별 승하차 인원.
 - 제공: [서울메트로](http://www.seoulmetro.co.kr/)
 - 방법:
-  - 서울메트로(http://www.seoulmetro.co.kr/board/bbs/view.action?bbsCd=61&mCode=C080000000&idxId=18450) 접속.
+  - http://www.seoulmetro.co.kr/board/bbs/view.action?bbsCd=61&mCode=C080000000&idxId=18450 접속.
   - 1~4호선 역별 시간대별(일) 승하차인원 2014 - Excel 파일 다운로드.
   - Excel 파일 열어서 다른이름으로 저장 선택 후 csv 형식으로 저장.
   - 저장한 csv 파일을 다시 윈도우 메모장으로 열어서 UTF-8 포맷으로 선택 후 새로 저장.
@@ -120,9 +120,9 @@ node bin/1to4_convert.js
 
 #### 역별 시간대별(일) 승하차 인원[2014] - 5~8호선 서울도시철도공사
 - 설명: 2014년도 5~8호선 역별 시간대별 승하차 인원
-- 제공 [서울도시철도공사](http://www.smrt.co.kr/)
+- 제공 [서울 열린 데이터광장](http://data.seoul.go.kr)([서울도시철도공사](http://www.smrt.co.kr/))
 - 방법:
-  - 서울 열린 데이터광장(http://data.seoul.go.kr/openinf/sheetview.jsp?infId=OA-12257&tMenu=11) 접속.
+  - http://data.seoul.go.kr/openinf/sheetview.jsp?infId=OA-12257&tMenu=11 접속.
   - 제공되는 파일 중 csv 파일 다운로드.
   - 다운로드 한 파일명을 `2014_5TO8.csv` 으로 변경하여 source/ 디렉토리 아래로 이동.
   - 다음 명령어 실행하면 프로젝트의 data/ 디렉토리 아래에 5to8_{YYYYMMDD}.log 형식으로 파일 생성됨.
