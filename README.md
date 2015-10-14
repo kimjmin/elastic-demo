@@ -98,21 +98,21 @@ output{
 - 설명: 지하철역 위도/경도 좌표를 위한 메타데이타.
 - 제공: [서울메트로](http://www.seoulmetro.co.kr/)
 - 방법:
-  1. 서울 열린 데이터 광장(http://data.seoul.go.kr/openinf/sheetview.jsp?infId=OA-118) 접속.
-  2. 제공되는 파일 중 json 파일 다운로드.
-  3. 다운로드 한 파일명을 `station_info.json` 으로 변경하여 source/ 디렉토리 아래로 이동.
+  - 서울 열린 데이터 광장(http://data.seoul.go.kr/openinf/sheetview.jsp?infId=OA-118) 접속.
+  - 제공되는 파일 중 json 파일 다운로드.
+  - 다운로드 한 파일명을 `station_info.json` 으로 변경하여 source/ 디렉토리 아래로 이동.
 
 
 #### 역별 시간대별 승하차 인원 현황(2014년) - 1~4호선
 - 설명: 2014년도 1~4호선 역별 시간대별 승하차 인원.
 - 제공: [서울메트로](http://www.seoulmetro.co.kr/)
 - 방법:
-  1. 서울메트로(http://www.seoulmetro.co.kr/board/bbs/view.action?bbsCd=61&mCode=C080000000&idxId=18450) 접속.
-  2. 1~4호선 역별 시간대별(일) 승하차인원 2014 - Excel 파일 다운로드.
-  3. Excel 파일 열어서 다른이름으로 저장 선택 후 csv 형식으로 저장.
-  4. 저장한 csv 파일을 다시 윈도우 메모장으로 열어서 UTF-8 포맷으로 선택 후 새로 저장.
-  5. 파일명을 `2014_1TO4.csv` 로 변경 후 프로젝트의 source/ 디렉토리 아래로 이동.
-  6. 다음 명령어 실행하면 프로젝트의 data/ 디렉토리 아래에 1to4_{YYYYMMDD}.log 형식으로 파일 생성됨.
+  - 서울메트로(http://www.seoulmetro.co.kr/board/bbs/view.action?bbsCd=61&mCode=C080000000&idxId=18450) 접속.
+  - 1~4호선 역별 시간대별(일) 승하차인원 2014 - Excel 파일 다운로드.
+  - Excel 파일 열어서 다른이름으로 저장 선택 후 csv 형식으로 저장.
+  - 저장한 csv 파일을 다시 윈도우 메모장으로 열어서 UTF-8 포맷으로 선택 후 새로 저장.
+  - 파일명을 `2014_1TO4.csv` 로 변경 후 프로젝트의 source/ 디렉토리 아래로 이동.
+  - 다음 명령어 실행하면 프로젝트의 data/ 디렉토리 아래에 1to4_{YYYYMMDD}.log 형식으로 파일 생성됨.
 
 ```
 node bin/1to4_convert.js
@@ -122,10 +122,10 @@ node bin/1to4_convert.js
 - 설명: 2014년도 5~8호선 역별 시간대별 승하차 인원
 - 제공 [서울도시철도공사](http://www.smrt.co.kr/)
 - 방법:
-  1. 서울 열린 데이터광장(http://data.seoul.go.kr/openinf/sheetview.jsp?infId=OA-12257&tMenu=11) 접속.
-  2. 제공되는 파일 중 csv 파일 다운로드.
-  2. 다운로드 한 파일명을 `2014_5TO8.csv` 으로 변경하여 source/ 디렉토리 아래로 이동.
-  5. 다음 명령어 실행하면 프로젝트의 data/ 디렉토리 아래에 5to8_{YYYYMMDD}.log 형식으로 파일 생성됨.
+  - 서울 열린 데이터광장(http://data.seoul.go.kr/openinf/sheetview.jsp?infId=OA-12257&tMenu=11) 접속.
+  - 제공되는 파일 중 csv 파일 다운로드.
+  - 다운로드 한 파일명을 `2014_5TO8.csv` 으로 변경하여 source/ 디렉토리 아래로 이동.
+  - 다음 명령어 실행하면 프로젝트의 data/ 디렉토리 아래에 5to8_{YYYYMMDD}.log 형식으로 파일 생성됨.
 
 ```
 node bin/5to8_convert.js
