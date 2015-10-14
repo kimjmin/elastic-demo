@@ -7,7 +7,7 @@ npm install
 ```
 
 ## 1. 서울시 지하철 유동인원 데이터
-
+![대시보드](https://github.com/kimjmin/elastic-demo/blob/master/img/seoul-metro-demo.png?raw=true)
 ### 1.1 ELK 설정
 #### elasticsearch
 
@@ -136,5 +136,3 @@ node bin/5to8_convert.js
 
 - URL : https://14faa4d979096e1936d5d292ba5dbf6b.ap-northeast-1.aws.found.io/#/dashboard/서울시-지하철-승-slash-하차-인원
 - 접속 id / password 는 jongmin.kim@elastic.co 으로 문의.
-
-![대시보드](img/seoul-metro-demo.PNG)
