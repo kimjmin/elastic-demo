@@ -98,7 +98,7 @@ output{
 - 설명: 지하철역 위도/경도 좌표를 위한 메타데이타.
 - 제공: [서울 열린 데이터광장](http://data.seoul.go.kr)([서울메트로](http://www.seoulmetro.co.kr/))
 - 방법:
-  - 서울 열린 데이터 광장(http://data.seoul.go.kr/openinf/sheetview.jsp?infId=OA-118) 접속.
+  - http://data.seoul.go.kr/openinf/sheetview.jsp?infId=OA-118 접속.
   - 제공되는 파일 중 json 파일 다운로드.
   - 다운로드 한 파일명을 `station_info.json` 으로 변경하여 source/ 디렉토리 아래로 이동.
 
