@@ -1,27 +1,10 @@
 var fs = require('fs');
 var parse = require('csv-parse');
+var s_meta = require('./station_meta');
 
 var sInfo = fs.readFileSync('source/station_info.json', 'utf8');
 var sLocation = JSON.parse(sInfo).DATA;
 //console.log(sLocation.DATA.length);
-
-var s_meta = new Object();
-for(var i = 0; i < sLocation.length; i++){
-  if(sLocation[i].XPOINT_WGS !== ""){
-    //"서울" 은 "서울역" 으로 이름 변경.
-    if(sLocation[i].STATION_NM === "서울"){
-      sLocation[i].STATION_NM = "서울역"
-    }
-    s_meta[sLocation[i].STATION_NM] = {
-      "STATION_CD" : sLocation[i].STATION_CD,
-      "STATION_NM" : sLocation[i].STATION_NM,
-      "LINE_NUM" : Number(sLocation[i].LINE_NUM),
-      "FR_CODE" : sLocation[i].FR_CODE,
-      "GEO_X" : Number(sLocation[i].XPOINT_WGS),
-      "GEO_Y" : Number(sLocation[i].YPOINT_WGS)
-    }
-  }
-}
 
 var f1to4 = fs.readFileSync('source/2014_5TO8.csv', 'utf8');
 parse(f1to4, {comment:"#"}, function(csv_err, csv_data){
@@ -81,19 +64,27 @@ parse(f1to4, {comment:"#"}, function(csv_err, csv_data){
         var people_out = dataOut[5+h];
         //console.log(people_out);
         people_out = Number(people_out);
-
+        
+        var line_num_lang = {
+          "1호선" : "Line 1", "2호선" : "Line 2", "3호선" : "Line 3", "4호선" : "Line 4", 
+          "5호선" : "Line 5", "6호선" : "Line 6", "7호선" : "Line 7", "8호선" : "Line 8"
+        }
         var s_logs = {
           "time_slice" : ldate,
           "line_num" : dataIn[0],
+          "line_num_en" : line_num_lang[dataIn[1]],
           "station_name" : station_name,
-          "station_code" : s_meta[station_name].STATION_CD,
+          "station_name_kr" : s_meta[station_name].STN_NM_KOR,
+          "station_name_en" : s_meta[station_name].STN_NM_ENG,
+          "station_name_chc" : s_meta[station_name].STN_NM_CHC,
+          "station_name_ch" : s_meta[station_name].STN_NM_CHN,
+          "station_name_jp" : s_meta[station_name].STN_NM_JPN,
           "station_geo" : {
             "lat" : s_meta[station_name].GEO_X,
             "lon" : s_meta[station_name].GEO_Y
           },
           "people_in" : people_in,
-          "people_out" : people_out,
-          "total" : people_in + people_out
+          "people_out" : people_out
         }
 
         //console.log("%j",s_logs);
