@@ -19,12 +19,16 @@ npm install
 ---- | ---- | ----
 time_slice | datetime | 승/하차 시간. 1시간 단위.
 line_num | string | 호선 (1호선, 2호선 ...)
-station_name | string | 역 이름
-station_code | string | 역 코드
+line_num_en | string | 호선(영문) (Line 1, Line 2 ...)
+station_name | string | 역 이름 : 잠실
+station_name | string | 역 이름 전체 : 잠실(송파구청)
+station_name | string | 역 이름 영문
+station_name | string | 역 이름 한자
+station_name | string | 역 이름 중국어 간체
+station_name | string | 역 이름 일본어
 station_geo { lat , lon } | geo_point | 역 좌표
 people_in | integer | 승차인원
 people_out | integer | 하차인원
-total | integer | 승하차인원 합계
 
 
 - 매핑 정보 입력:
@@ -37,17 +41,22 @@ curl -XPUT '<host url>:[9200|9243]/demo-kr-subway' [-u '<user>'] -d '
       "properties" : {
         "time_slice" : { "type" : "date" },
         "line_num" : { "type" : "string", "index" : "not_analyzed" },
+        "line_num_en" : { "type" : "string", "index" : "not_analyzed" },
         "station_name" : { "type" : "string", "index" : "not_analyzed" },
-        "station_code" : { "type" : "string", "index" : "not_analyzed" },
+        "station_name_kr" : { "type" : "string", "index" : "not_analyzed" },
+        "station_name_en" : { "type" : "string", "index" : "not_analyzed" },
+        "station_name_chc" : { "type" : "string", "index" : "not_analyzed" },
+        "station_name_ch" : { "type" : "string", "index" : "not_analyzed" },
+        "station_name_jp" : { "type" : "string", "index" : "not_analyzed" },
         "station_geo" : { "type" : "geo_point" },
         "people_in" : { "type" : "integer" },
-        "people_out" : { "type" : "integer" },
         "people_out" : { "type" : "integer" }
       }
     }
   }
 }'
 ```
+
 > - ES 서버에 Sield 가 설치된 경우 -u 'user' 추가해서 사용자 인증 해야 함.
 
 #### logstash
@@ -85,12 +94,13 @@ output{
 ```
 
 > - found 클라우드 서비스에서 ssl 접속을 사용하는 경우 protocol => "http" 만 사용 가능함.
-> - ES 서버에 Sield 가 설치된 경우 user => "user", password => "password" 추가해서 사용자 인증 해야 함.
+> - ES 서버에 Shield 가 설치된 경우 user => "user", password => "password" 추가해서 사용자 인증 해야 함.
 
 
 ### 1.2 데이터 수집
 
 > 서울시의 지하철은 각각 1~4호선은 서울메트로가, 5~8호선은 서울도시철도공사가 관리하기 별도 파일들로부터 데이터를 추출해야 한다.
+> 경의선, 분당선 등과 3호선의 일산선 구간 (대화 ~ 지축) 등은 집계된 데이터에 포함되어 있지 않다.
 
 - 전체 도큐먼트 수 : 2,188,564
 
@@ -139,11 +149,11 @@ output{
   
 
 ### 1.3 데이터 생성
-1. 다음 명령어 실행하면 프로젝트의 data/ 디렉토리 아래에 1to4_{YYYYMMDD}.log 형식으로 파일 생성됨.
+- 다음 명령어 실행하면 프로젝트의 data/ 디렉토리 아래에 1to4_{YYYYMMDD}.log 형식으로 1~4호선 승하차 로그 파일 생성됨.
 ```
 node bin/1to4_convert.js
 ```
-1. 다음 명령어 실행하면 프로젝트의 data/ 디렉토리 아래에 5to8_{YYYYMMDD}.log 형식으로 파일 생성됨.
+- 다음 명령어 실행하면 프로젝트의 data/ 디렉토리 아래에 5to8_{YYYYMMDD}.log 형식으로 5~8호선 승하차 로그 파일 생성됨.
 ```
 node bin/5to8_convert.js
 ```
