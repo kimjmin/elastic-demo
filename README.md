@@ -11,13 +11,13 @@ npm install
 ### 1.1 ELK 설정
 #### elasticsearch
 
-- 인덱스명: demo-kr-subway
-- 타입명: kr-subway
+- 인덱스명: seoul-metro-2014
+- 타입명: seoul-metro
 - 매핑 정보:
 
 필드명 | 타입 | 설명
 ---- | ---- | ----
-time_slice | datetime | 승/하차 시간. 1시간 단위.
+\_timestamp | datetime | 승/하차 시간. 1시간 단위.
 line_num | string | 호선 (1호선, 2호선 ...)
 line_num_en | string | 호선(영문) (Line 1, Line 2 ...)
 station_name | string | 역 이름 : 잠실
@@ -34,27 +34,27 @@ people_out | integer | 하차인원
 - 매핑 정보 입력:
 
 ```
-curl -XPUT '<host url>:[9200|9243]/demo-kr-subway' [-u '<user>'] -d '
-{
-  "mappings" : {
-    "kr-subway" : {
-      "properties" : {
-        "time_slice" : { "type" : "date" },
-        "line_num" : { "type" : "string", "index" : "not_analyzed" },
-        "line_num_en" : { "type" : "string", "index" : "not_analyzed" },
-        "station_name" : { "type" : "string", "index" : "not_analyzed" },
-        "station_name_kr" : { "type" : "string", "index" : "not_analyzed" },
-        "station_name_en" : { "type" : "string", "index" : "not_analyzed" },
-        "station_name_chc" : { "type" : "string", "index" : "not_analyzed" },
-        "station_name_ch" : { "type" : "string", "index" : "not_analyzed" },
-        "station_name_jp" : { "type" : "string", "index" : "not_analyzed" },
-        "station_geo" : { "type" : "geo_point" },
-        "people_in" : { "type" : "integer" },
-        "people_out" : { "type" : "integer" }
+curl -XPUT '<host url>:[9200|9243]/seoul-metro-2014' [-u '<user>'] -d '
+  {
+    "mappings" : {
+      "seoul-metro" : {
+        "properties" : {
+          "time_slot" : { "type" : "date" },
+          "line_num" : { "type" : "string", "index" : "not_analyzed" },
+          "line_num_en" : { "type" : "string", "index" : "not_analyzed" },
+          "station_name" : { "type" : "string", "index" : "not_analyzed" },
+          "station_name_kr" : { "type" : "string", "index" : "not_analyzed" },
+          "station_name_en" : { "type" : "string", "index" : "not_analyzed" },
+          "station_name_chc" : { "type" : "string", "index" : "not_analyzed" },
+          "station_name_ch" : { "type" : "string", "index" : "not_analyzed" },
+          "station_name_jp" : { "type" : "string", "index" : "not_analyzed" },
+          "station_geo" : { "type" : "geo_point" },
+          "people_in" : { "type" : "integer" },
+          "people_out" : { "type" : "integer" }
+        }
       }
     }
-  }
-}'
+  }'
 ```
 
 > - ES 서버에 Sield 가 설치된 경우 -u 'user' 추가해서 사용자 인증 해야 함.
@@ -82,11 +82,11 @@ output{
 #    protocol => "node"
 #    protocol => "http"
 #    ssl => true
-    host => "<host url>"  #remove http|https
+    hosts => ["127.0.0.1"]
 #    port => 9300
     port => 9243
-    index => "demo-kr-subway"
-    document_type => "kr-subway"
+    index => "seoul-metro-2014"
+    document_type => "seoul-metro"
 #    user => "<user>"        #need admin privilege
 #    password => "<password>"
   }

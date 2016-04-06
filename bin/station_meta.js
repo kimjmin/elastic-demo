@@ -12,8 +12,9 @@ var sNames = JSON.parse(sLang).DATA;
 var location_meta = new Array();
 for(var i = 0; i < sLocation.length; i++){
   if(sLocation[i].XPOINT_WGS !== "" &&
-    (sLocation[i].LINE_NUM === "1" || sLocation[i].LINE_NUM === "2" || sLocation[i].LINE_NUM === "3" || sLocation[i].LINE_NUM === "4" || 
-    sLocation[i].LINE_NUM === "5" || sLocation[i].LINE_NUM === "6" || sLocation[i].LINE_NUM === "7" || sLocation[i].LINE_NUM === "8")
+      (sLocation[i].LINE_NUM === "1" || sLocation[i].LINE_NUM === "2" || sLocation[i].LINE_NUM === "3" || sLocation[i].LINE_NUM === "4" || 
+      sLocation[i].LINE_NUM === "5" || sLocation[i].LINE_NUM === "6" || sLocation[i].LINE_NUM === "7" || sLocation[i].LINE_NUM === "8" ||
+       sLocation[i].LINE_NUM === "I" || sLocation[i].LINE_NUM === "B")
     ){
     //"서울" 은 "서울역" 으로 이름 변경.
     if(sLocation[i].STATION_NM === "서울"){ sLocation[i].STATION_NM = "서울역" }
@@ -60,7 +61,8 @@ for(var i=0; i < location_meta.length; i++){
     location_meta[i].STATION_NM = "쌍용";
   }
   
-  if(location_meta[i].STATION_NM !== "광명" && location_meta[i].STATION_NM !== "원흥" ){
+  //console.log(location_meta[i].STATION_NM);
+  if(location_meta[i].STATION_NM !== "광명" && location_meta[i].STATION_NM !== "원흥" && location_meta[i].STATION_NM !== "매탄권선" ){
     station_meta[location_meta[i].STATION_NM] = {
       "STN_NM" : location_meta[i].STATION_NM,
       "STN_NM_KOR" : language_meta[location_meta[i].STATION_NM].STN_NM_KOR,

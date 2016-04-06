@@ -14,10 +14,6 @@ parse(f1to4, {comment:"#"}, function(csv_err, csv_data){
   //[날짜,호선,역명,구분,00~01,01~02,02~03,03~04,04~05,05~06,06~07,07~08,08~09,09~10,10~11,11~12,12~13,13~14,14~15,15~16,16~17,17~18,18~19,19~20,20~21,21~22,22~23,23~24,합계]
   //["2014-02-24","3호선","종로3가(319)","승차"," 16 "," - "," - "," - "," 1 "," 26 "," 29 "," 58 "," 125 "," 156 "," 261 "," 293 "," 401 "," 475 "," 562 "," 660 "," 983 "," 967 "," 1,643 "," 1,621 "," 884 "," 675 "," 505 "," 165 "," 10,506 "]
 
-  var sDiffNames = {
-    "총신대입구" : ["총신대입구(이수)","총신대입구(이수)"]
-  }
-
   for(var cd=1; cd< csv_data.length ; cd+=2){
     var dataIn = csv_data[cd];
     var dataOut = csv_data[cd+1];
@@ -29,14 +25,18 @@ parse(f1to4, {comment:"#"}, function(csv_err, csv_data){
         lStationName = dataIn[2];
       }
       //console.log(lStationName);
+      /*
       var station_name = "";
       if(!s_meta[lStationName]){
         station_name = sDiffNames[lStationName][0];
+        console.log("******");
         //sRiders[j].SUB_STA_NM = sDiffNames[lStationName][0];
       } else {
         station_name = lStationName;
       }
-
+      */
+      station_name = lStationName;
+      
       var ldateTemp = dataIn[0].split('-');
       // console.log(Number(ldateTemp[0]));
       // console.log(Number(ldateTemp[1]));
@@ -64,7 +64,7 @@ parse(f1to4, {comment:"#"}, function(csv_err, csv_data){
           "5호선" : "Line 5", "6호선" : "Line 6", "7호선" : "Line 7", "8호선" : "Line 8"
         }
         var s_logs = {
-          "time_slice" : ldate,
+          "time_slot" : ldate,
           "line_num" : dataIn[1],
           "line_num_en" : line_num_lang[dataIn[1]],
           "station_name" : station_name,

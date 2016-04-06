@@ -22,7 +22,7 @@ parse(f1to4, {comment:"#"}, function(csv_err, csv_data){
 
   var sDiffNames = {
     "동대문역사문화공원5" : ["동대문역사문화공원","동대문역사문화공원"],
-    "이수" : ["총신대입구(이수)","총신대입구(이수)"]
+    "이수" : ["총신대입구","총신대입구(이수)"]
   }
 
   //1,2 라인은 타이틀. 3라인 부터 시작.
@@ -38,6 +38,7 @@ parse(f1to4, {comment:"#"}, function(csv_err, csv_data){
       }
       //console.log(lStationName);
       var station_name = "";
+      
       if(!s_meta[lStationName]){
         station_name = sDiffNames[lStationName][0];
         //sRiders[j].SUB_STA_NM = sDiffNames[lStationName][0];
@@ -69,8 +70,9 @@ parse(f1to4, {comment:"#"}, function(csv_err, csv_data){
           "1호선" : "Line 1", "2호선" : "Line 2", "3호선" : "Line 3", "4호선" : "Line 4", 
           "5호선" : "Line 5", "6호선" : "Line 6", "7호선" : "Line 7", "8호선" : "Line 8"
         }
+        //console.log("==== "+station_name);
         var s_logs = {
-          "time_slice" : ldate,
+          "time_slot" : ldate,
           "line_num" : dataIn[0],
           "line_num_en" : line_num_lang[dataIn[1]],
           "station_name" : station_name,
