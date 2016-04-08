@@ -74,7 +74,7 @@ parse(f1to4, {comment:"#"}, function(csv_err, csv_data){
         var s_logs = {
           "time_slot" : ldate,
           "line_num" : dataIn[0],
-          "line_num_en" : line_num_lang[dataIn[1]],
+          "line_num_en" : line_num_lang[dataIn[0]],
           "station_name" : station_name,
           "station_name_kr" : s_meta[station_name].STN_NM_KOR,
           "station_name_en" : s_meta[station_name].STN_NM_ENG,
