@@ -79,15 +79,10 @@ filter{
 
 output{
   elasticsearch{
-#    protocol => "node"
-#    protocol => "http"
-#    ssl => true
     hosts => ["127.0.0.1"]
-#    port => 9300
-    port => 9243
     index => "seoul-metro-2014"
     document_type => "seoul-metro"
-#    user => "<user>"        #need admin privilege
+#    user => "<user>"
 #    password => "<password>"
   }
 }
@@ -158,7 +153,6 @@ node bin/1to4_convert.js
 node bin/5to8_convert.js
 ```
 
-### 1.4 Kibana4 예제 페이지
+### 1.4 추출된 데이터 링크
+- https://drive.google.com/file/d/0ByqsUCpttxAGd1VXRU41VmJBNWs
 
-- URL : https://14faa4d979096e1936d5d292ba5dbf6b.ap-northeast-1.aws.found.io/#/dashboard/서울시-지하철-승-slash-하차-인원
-- 접속 id / password 는 jongmin.kim@elastic.co 으로 문의.
