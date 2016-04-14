@@ -63,6 +63,7 @@ parse(f1to4, {comment:"#"}, function(csv_err, csv_data){
           "1호선" : "Line 1", "2호선" : "Line 2", "3호선" : "Line 3", "4호선" : "Line 4", 
           "5호선" : "Line 5", "6호선" : "Line 6", "7호선" : "Line 7", "8호선" : "Line 8"
         }
+        //console.log(station_name);
         var s_logs = {
           "time_slot" : ldate,
           "line_num" : dataIn[1],
