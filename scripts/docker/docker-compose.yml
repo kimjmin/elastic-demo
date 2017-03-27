@@ -1,0 +1,93 @@
+version: '2'
+services:
+  es1:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.2.2
+    container_name: es1
+    environment:
+      - cluster.name=es-docker
+      - node.name=node1
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    mem_limit: 512m
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - esdata1:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - esnet
+  es2:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.2.2
+    container_name: es2
+    environment:
+      - cluster.name=es-docker
+      - node.name=node2
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+      - "discovery.zen.ping.unicast.hosts=es1"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    mem_limit: 512m
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - esdata2:/usr/share/elasticsearch/data
+    networks:
+      - esnet
+  es3:
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.2.2
+    container_name: es3
+    environment:
+      - cluster.name=es-docker
+      - node.name=node3
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+      - "discovery.zen.ping.unicast.hosts=es1"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      nofile:
+        soft: 65536
+        hard: 65536
+    mem_limit: 512m
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - esdata3:/usr/share/elasticsearch/data
+    networks:
+      - esnet
+  kibana:
+    image: docker.elastic.co/kibana/kibana:5.2.2
+    container_name: kibana
+    ports:
+      - 5601:5601
+    networks:
+      - esnet
+    environment:
+      ELASTICSEARCH_URL: http://es1:9200
+
+volumes:
+  esdata1:
+    driver: local
+  esdata2:
+    driver: local
+  esdata3:
+    driver: local
+
+networks:
+  esnet:
+    driver: bridge
