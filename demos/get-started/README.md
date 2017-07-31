@@ -1,7 +1,8 @@
 # Elasticsearch 시작하기
 
-Elasticsearch 시작하기 (Elasticsearch: Getting Started) 데모 코드
-Video : https://www.elastic.co/kr/webinars/getting-started-elasticsearch
+Elasticsearch 시작하기 (Elasticsearch: Getting Started) 데모에 사용된 코드
+
+비디오 링크 : https://www.elastic.co/kr/webinars/getting-started-elasticsearch
 
 ```
 #--------------------------------------------------
