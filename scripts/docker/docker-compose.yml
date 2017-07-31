@@ -1,13 +1,14 @@
 version: '2'
 services:
   es1:
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.2.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
+
     container_name: es1
     environment:
       - cluster.name=es-docker
       - node.name=node1
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
       memlock:
         soft: -1
@@ -15,7 +16,7 @@ services:
       nofile:
         soft: 65536
         hard: 65536
-    mem_limit: 512m
+    mem_limit: 1g
     cap_add:
       - IPC_LOCK
     volumes:
@@ -25,13 +26,14 @@ services:
     networks:
       - esnet
   es2:
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.2.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
+
     container_name: es2
     environment:
       - cluster.name=es-docker
       - node.name=node2
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - "discovery.zen.ping.unicast.hosts=es1"
     ulimits:
       memlock:
@@ -40,7 +42,7 @@ services:
       nofile:
         soft: 65536
         hard: 65536
-    mem_limit: 512m
+    mem_limit: 1g
     cap_add:
       - IPC_LOCK
     volumes:
@@ -48,13 +50,14 @@ services:
     networks:
       - esnet
   es3:
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.2.2
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.4.1
+
     container_name: es3
     environment:
       - cluster.name=es-docker
       - node.name=node3
       - bootstrap.memory_lock=true
-      - "ES_JAVA_OPTS=-Xms256m -Xmx256m"
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - "discovery.zen.ping.unicast.hosts=es1"
     ulimits:
       memlock:
@@ -63,7 +66,7 @@ services:
       nofile:
         soft: 65536
         hard: 65536
-    mem_limit: 512m
+    mem_limit: 1g
     cap_add:
       - IPC_LOCK
     volumes:
@@ -71,7 +74,8 @@ services:
     networks:
       - esnet
   kibana:
-    image: docker.elastic.co/kibana/kibana:5.2.2
+    image: docker.elastic.co/kibana/kibana:5.4.1
+
     container_name: kibana
     ports:
       - 5601:5601
